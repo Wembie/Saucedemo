@@ -6,7 +6,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import unittest
 from logging import Logger, basicConfig, INFO
 
-# Configuración del logger
 basicConfig(level=INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = Logger("SauceDemoLogger")
 
@@ -23,7 +22,6 @@ class SauceDemoTests(unittest.TestCase):
     password = "secret_sauce"
     screenshots_dir = "screenshots"
 
-    # Mapeo de páginas a sus mensajes de error
     pages_to_test = {
         "https://www.saucedemo.com/cart.html": "Epic sadface: You can only access '/cart.html' when you are logged in.",
         "https://www.saucedemo.com/inventory.html": "Epic sadface: You can only access '/inventory.html' when you are logged in.",
