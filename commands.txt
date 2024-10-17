@@ -1,0 +1,7 @@
+black tests/     #Esto aplicará el formateo de black a todos los archivos Python dentro de la carpeta tests.
+
+python -m unittest discover -s tests     #Esto buscará automáticamente todos los archivos que comiencen con test_ en la carpeta tests y ejecutará las pruebas.
+
+pip install -r requirements.txt     #instalar todas las dependencias
+
+pip install -r requirements-dev.txt     #instalar todas las dependencias dev
