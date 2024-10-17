@@ -1,16 +1,9 @@
-import os
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import unittest
-from logging import Logger, basicConfig, INFO
-
-basicConfig(level=INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-logger = Logger("SauceDemoLogger")
+from base_test import BaseTest, unittest, os, logger
 
 
-class SauceDemoTests(unittest.TestCase):
+class LoginTests(BaseTest):
     users = [
         "standard_user",
         "problem_user",
@@ -20,7 +13,6 @@ class SauceDemoTests(unittest.TestCase):
         "locked_out_user",  # ERROR Epic sadface: Sorry, this user has been locked out.
     ]
     password = "secret_sauce"
-    screenshots_dir = "screenshots"
 
     pages_to_test = {
         "https://www.saucedemo.com/cart.html": "Epic sadface: You can only access '/cart.html' when you are logged in.",
@@ -30,16 +22,10 @@ class SauceDemoTests(unittest.TestCase):
         "https://www.saucedemo.com/checkout-complete.html": "Epic sadface: You can only access '/checkout-complete.html' when you are logged in.",
     }
 
-    @classmethod
-    def setUpClass(cls):
-        if not os.path.exists(cls.screenshots_dir):
-            os.makedirs(cls.screenshots_dir)
-            logger.info(f"Screenshot directory '{cls.screenshots_dir}' created.")
-
     def setUp(self):
-        self.driver = webdriver.Chrome()
-        self.wait = WebDriverWait(self.driver, 10)
+        super().setUp()
         self.driver.get("https://www.saucedemo.com/")
+        self.path = f"{self.screenshots_dir}/{self.__class__.__name__.lower()}"
 
     def test_login(self):
         driver = self.driver
@@ -63,34 +49,32 @@ class SauceDemoTests(unittest.TestCase):
                 )
                 self.assertEqual(inventory_title.text, "Products")
                 logger.info(f"Login successful for user: {user}")
+                self.logout(user)
+            except Exception:
+                self.handle_login_failure(user)
 
-                driver.find_element(By.ID, "react-burger-menu-btn").click()
-                logout_button = self.wait.until(
-                    EC.visibility_of_element_located((By.ID, "logout_sidebar_link"))
-                )
-                logout_button.click()
-                logger.info(f"User {user} logged out successfully.")
+    def logout(self, user):
+        self.driver.find_element(By.ID, "react-burger-menu-btn").click()
+        logout_button = self.wait.until(
+            EC.visibility_of_element_located((By.ID, "logout_sidebar_link"))
+        )
+        logout_button.click()
+        logger.info(f"User {user} logged out successfully.")
 
-            except Exception as e:
-                try:
-                    error_message = driver.find_element(
-                        By.CLASS_NAME, "error-message-container"
-                    ).text
-                    logger.warning(
-                        f"Login failed for user: {user} with error: {error_message}"
-                    )
-                except:
-                    logger.warning(
-                        f"Login failed for user: {user} without visible error message."
-                    )
+    def handle_login_failure(self, user):
+        try:
+            error_message = self.driver.find_element(
+                By.CLASS_NAME, "error-message-container"
+            ).text
+            logger.warning(f"Login failed for user: {user} with error: {error_message}")
+        except Exception:
+            logger.warning(
+                f"Login failed for user: {user} without visible error message."
+            )
 
-                screenshot_path = os.path.join(
-                    self.screenshots_dir, f"{user}_login_failure.png"
-                )
-                driver.save_screenshot(screenshot_path)
-                logger.error(
-                    f"Screenshot for user {user} failure saved at {screenshot_path}"
-                )
+        screenshot_path = os.path.join(self.path, f"{user}_login_failure.png")
+        self.driver.save_screenshot(screenshot_path)
+        logger.error(f"Screenshot for user {user} failure saved at {screenshot_path}")
 
     def test_access_pages_without_login(self):
         for page, expected_error in self.pages_to_test.items():
@@ -111,14 +95,11 @@ class SauceDemoTests(unittest.TestCase):
                         f"Failed to verify error message for accessing '{page}'."
                     )
                     screenshot_path = os.path.join(
-                        self.screenshots_dir,
+                        self.path,
                         f"access_{page.split('/')[-1]}_without_login_failure.png",
                     )
                     self.driver.save_screenshot(screenshot_path)
                     logger.error(f"Screenshot saved at {screenshot_path}")
-
-    def tearDown(self):
-        self.driver.quit()
 
 
 if __name__ == "__main__":
