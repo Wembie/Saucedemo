@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+	<testsuite name="test_login.LoginTests-20241102112435" tests="2" file="test_login.py" time="26.374" timestamp="2024-11-02T11:25:06" failures="0" errors="0" skipped="0">
+		<testcase classname="test_login.LoginTests" name="test_access_pages_without_login" time="4.031" timestamp="2024-11-02T11:24:39" file="tests\test_login.py" line="79"/>
+		<testcase classname="test_login.LoginTests" name="test_login" time="22.343" timestamp="2024-11-02T11:25:06" file="tests\test_login.py" line="30">
+			<system-err><![CDATA[Login failed for user: locked_out_user with error: Epic sadface: Sorry, this user has been locked out.
+Screenshot for user locked_out_user failure saved at screenshots/logintests\locked_out_user_login_failure.png
+]]></system-err>
+		</testcase>
+	</testsuite>
+	<testsuite name="test_inventory.InventoryTests-20241102112435" tests="2" file="test_inventory.py" time="7.431" timestamp="2024-11-02T11:25:21" failures="0" errors="0" skipped="0">
+		<testcase classname="test_inventory.InventoryTests" name="test_inventory_page_elements" time="3.674" timestamp="2024-11-02T11:25:13" file="tests\test_inventory.py" line="19"/>
+		<testcase classname="test_inventory.InventoryTests" name="test_sort_inventory" time="3.757" timestamp="2024-11-02T11:25:21" file="tests\test_inventory.py" line="26"/>
+	</testsuite>
+	<testsuite name="test_cart.CartTests-20241102112435" tests="2" file="test_cart.py" time="7.426" timestamp="2024-11-02T11:25:37" failures="0" errors="0" skipped="0">
+		<testcase classname="test_cart.CartTests" name="test_add_to_cart" time="3.720" timestamp="2024-11-02T11:25:29" file="tests\test_cart.py" line="17"/>
+		<testcase classname="test_cart.CartTests" name="test_remove_from_cart" time="3.705" timestamp="2024-11-02T11:25:37" file="tests\test_cart.py" line="25"/>
+	</testsuite>
+	<testsuite name="test_checkout.CheckoutTests-20241102112435" tests="1" file="test_checkout.py" time="4.261" timestamp="2024-11-02T11:25:45" failures="0" errors="0" skipped="0">
+		<testcase classname="test_checkout.CheckoutTests" name="test_checkout_process" time="4.261" timestamp="2024-11-02T11:25:45" file="tests\test_checkout.py" line="17"/>
+	</testsuite>
+</testsuites>

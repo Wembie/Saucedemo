@@ -14,7 +14,7 @@ def xml_to_pdf(xml_file, pdf_file):
     y = height - 40
 
     c.setFont("Helvetica-Bold", 16)
-    c.drawString(40, y, "Reporte de Pruebas")
+    c.drawString(40, y, "Test Report")
     y -= 30
 
     for testsuite in root.findall("testsuite"):

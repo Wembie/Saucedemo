@@ -8,7 +8,7 @@ from test_checkout import CheckoutTests
 from base_test import logger
 from utils import xml_to_pdf
 
-os.makedirs("reportes", exist_ok=True)
+os.makedirs("reports", exist_ok=True)
 
 
 def suite():
@@ -21,8 +21,8 @@ def suite():
 
 
 if __name__ == "__main__":
-    xml_path = "reportes/reporte_pruebas.xml"
-    pdf_path = "reportes/reporte_pruebas.pdf"
+    xml_path = "reports/test_report.xml"
+    pdf_path = "reports/test_report.pdf"
 
     with open(xml_path, "wb") as output:
         runner = XMLTestRunner(output=output)
@@ -30,6 +30,6 @@ if __name__ == "__main__":
 
     try:
         xml_to_pdf(xml_path, pdf_path)
-        logger.info(f"Reporte PDF generado en {pdf_path}")
+        logger.info(f"PDF report generated in {pdf_path}")
     except Exception as e:
-        logger.error(f"Error al convertir el XML a PDF: {e}")
+        logger.error(f"Error converting XML to PDF: {e}")
