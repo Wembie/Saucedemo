@@ -38,6 +38,12 @@ Para ejecutar todas las pruebas unitarias, utiliza el siguiente comando:
 python -m unittest discover tests
 ```
 
+o simplemente correr el "test_suite.py" con el siguiente comando: (Que seria lo correcto)
+
+```bash
+python .\tests\test_suite.py
+```
+
 También puedes ejecutar un archivo de prueba específico, como test_cart.py:
 
 ```bash
