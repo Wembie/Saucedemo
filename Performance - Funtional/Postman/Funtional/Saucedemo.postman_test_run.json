@@ -1,0 +1,84 @@
+{
+	"id": "9780d0c3-f943-41ab-9a13-1a03b15264eb",
+	"name": "Saucedemo",
+	"timestamp": "2024-11-04T16:06:52.146Z",
+	"collection_id": "37797695-d4ff6116-694c-46bc-ad15-d5def1c9dc23",
+	"folder_id": 0,
+	"environment_id": "37797695-afee1559-aa7d-4269-9004-fe69183eb868",
+	"totalPass": 2,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2024-11-04T16:06:51.780Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "ecca26c0-68ee-42f9-8f06-7f72661cd192",
+			"name": "Get Page",
+			"url": "https://www.saucedemo.com/",
+			"time": 34,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status is 200.": true
+			},
+			"testPassFailCounts": {
+				"Response status is 200.": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				34
+			],
+			"allTests": [
+				{
+					"Response status is 200.": true
+				}
+			]
+		},
+		{
+			"id": "a520a379-f22c-4c8e-9fa2-375882533927",
+			"name": "Inventory",
+			"url": "https://www.saucedemo.com/inventory.html",
+			"time": 12,
+			"responseCode": {
+				"code": 405,
+				"name": "Method Not Allowed"
+			},
+			"tests": {
+				"Response status is 405.": true
+			},
+			"testPassFailCounts": {
+				"Response status is 405.": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Response status is 405.": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 46,
+	"collection": {
+		"requests": [
+			{
+				"id": "ecca26c0-68ee-42f9-8f06-7f72661cd192",
+				"method": "GET"
+			},
+			{
+				"id": "a520a379-f22c-4c8e-9fa2-375882533927",
+				"method": "POST"
+			}
+		]
+	}
+}
